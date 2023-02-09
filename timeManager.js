@@ -1,5 +1,6 @@
 
 var catCount = 0;
+var catIdArray = [];
 var addCatButton = document.getElementById("plus");
 addCatButton.addEventListener("click", addCat);
 function addCat() {
@@ -36,6 +37,7 @@ function createSection(event) {
 	catDiv.style.padding = "0px";
 	catDiv.style.borderWidth = "0px";
 	div.id = "category" + event.target.id.substring(12);
+	catIdArray.push(div.id);
 	console.log(div.id);
 	var title = document.createElement("h3");
 	title.innerHTML = catDiv.childNodes[0].value;
