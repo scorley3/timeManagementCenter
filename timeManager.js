@@ -64,6 +64,10 @@ function createSection(event) {
 }
 function editCategory(event) {
 	categoryNumber = event.target.id.substring(10);
+	buttonsDiv = document.getElementById("buttonsDiv" + categoryNumber);
+	buttonsDiv.style.visibility = "hidden"; 
+	buttonsDiv.style.width = "0px";
+	buttonsDiv.style.height = "0px";
 	if (document.getElementById("editDiv" + categoryNumber) == null) {
 		console.log(categoryNumber);
 		var catDiv = document.getElementById("category" + categoryNumber);
