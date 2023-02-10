@@ -42,12 +42,13 @@ function createSection(event) {
 	div.style.margin = "10px";
 	//set parent div to not show 
 	var catDiv = document.getElementById(event.target.id).parentElement;
-	catDiv.style.width = "0px";
+	catDiv.remove();
+/* 	catDiv.style.width = "0px";
 	catDiv.style.height = "0px";
 	catDiv.style.visibility = "hidden";
 	catDiv.style.margin = "0px";
 	catDiv.style.padding = "0px";
-	catDiv.style.borderWidth = "0px";
+	catDiv.style.borderWidth = "0px"; */
 	
 	var categoryNumber = event.target.id.substring(12);
 	div.id = "category" + categoryNumber;
