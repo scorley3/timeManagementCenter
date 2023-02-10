@@ -81,8 +81,16 @@ function createSection(event) {
 	addButton.id = "addButton" + categoryNumber;
 	addButton.className = "editButtons";
 	
+	var deleteButton = document.createElement("input");
+	deleteButton.type = "button";
+	deleteButton.value = "Delete Category";
+	deleteButton.id = "deleteButton" + categoryNumber;
+	deleteButton.addEventListener("click", areYouSure);
+	deleteButton.className = "editButtons";
+	
 	buttonsDiv.appendChild(editButton);
 	buttonsDiv.appendChild(addButton);
+	buttonsDiv.appendChild(deleteButton);
 	div.appendChild(buttonsDiv);
 	document.getElementById("dashboard").appendChild(div);
 }
@@ -167,6 +175,70 @@ function saveTitleDesc(event) {
 	buttonsDiv.style.visibility = "visible"; 
 	buttonsDiv.style.width = "600px";
 	buttonsDiv.style.height = "20px";
+}
+function areYouSure(event) {
+	categoryNumber = event.target.id.substring(12);
+	
+	var mainDiv = document.getElementById("category" + categoryNumber);
+	
+	var buttonsDiv = document.getElementById("buttonsDiv" + categoryNumber);
+	buttonsDiv.style.visibility = "hidden"; 
+	buttonsDiv.style.width = "0px";
+	buttonsDiv.style.height = "0px";
+	if (document.getElementById("deleteChoiceDiv" + categoryNumber) == null) {
+		var choiceDiv = document.createElement("div");
+		choiceDiv.id = "deleteChoiceDiv" + categoryNumber;
+		
+		var deletePrompt = document.createElement("p");
+		deletePrompt.innerHTML = "Are you sure you want to delete this category? This cannot be undone.";
+		
+		var yesButton = document.createElement("input");
+		yesButton.id = "yesDelete" + categoryNumber;
+		yesButton.type = "button";
+		yesButton.value = "Yes";
+		yesButton.addEventListener("click", deleteReset);
+		
+		var noButton = document.createElement("input");
+		noButton.id = "noDelete" + categoryNumber;
+		noButton.type = "button";
+		noButton.value = "No";
+		noButton.addEventListener("click", noDeleteReset);
+		
+		choiceDiv.appendChild(deletePrompt);
+		choiceDiv.appendChild(yesButton);
+		choiceDiv.appendChild(noButton);
+		mainDiv.appendChild(choiceDiv);
+	} else {
+		choiceDiv = document.getElementById("deleteChoiceDiv" + categoryNumber);
+		choiceDiv.style.visibility = "visible"; 
+		choiceDiv.style.width = "600px";
+		choiceDiv.style.height = "45px";
+	}
+	
+}
+function deleteReset(event) {
+	var categoryNumber = event.target.id.substring(9);
+	var catDiv = document.getElementById("category" + categoryNumber);
+	catDiv.style.visibility = "hidden"; 
+	catDiv.style.width = "0px";
+	catDiv.style.height = "0px";
+	
+	var choiceDiv = document.getElementById("deleteChoiceDiv" + categoryNumber);
+	choiceDiv.style.visibility = "hidden"; 
+	choiceDiv.style.width = "0px";
+	choiceDiv.style.height = "0px";
+}
+function noDeleteReset(event) {
+	categoryNumber = event.target.id.substring(8);
+	var buttonsDiv = document.getElementById("buttonsDiv" + categoryNumber);
+	buttonsDiv.style.visibility = "visible"; 
+	buttonsDiv.style.width = "600px";
+	buttonsDiv.style.height = "20px";
+	
+	var choiceDiv = document.getElementById("deleteChoiceDiv" + categoryNumber);
+	choiceDiv.style.visibility = "hidden"; 
+	choiceDiv.style.width = "0px";
+	choiceDiv.style.height = "0px";
 }
 //in each section, what do we want? 
 //ability to add/edit title and description 
