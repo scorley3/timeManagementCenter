@@ -219,14 +219,7 @@ function areYouSure(event) {
 function deleteReset(event) {
 	var categoryNumber = event.target.id.substring(9);
 	var catDiv = document.getElementById("category" + categoryNumber);
-	catDiv.style.visibility = "hidden"; 
-	catDiv.style.width = "0px";
-	catDiv.style.height = "0px";
-	
-	var choiceDiv = document.getElementById("deleteChoiceDiv" + categoryNumber);
-	choiceDiv.style.visibility = "hidden"; 
-	choiceDiv.style.width = "0px";
-	choiceDiv.style.height = "0px";
+	catDiv.remove();
 }
 function noDeleteReset(event) {
 	categoryNumber = event.target.id.substring(8);
